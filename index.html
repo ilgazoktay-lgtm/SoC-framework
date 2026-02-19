@@ -1,0 +1,181 @@
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Automated Disassembly Framework</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f4f6f9;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type=number] {
+      width: 60px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #eef2f7;
+    }
+
+    button {
+      padding: 10px 18px;
+      background: #0052cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #003d99;
+    }
+
+    .result {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Automated Disassembly Decision Framework</h1>
+<p>Score product groups (1–5) and adjust pillar weights.</p>
+
+<div class="section">
+  <h2>1. Adjust Pillar Weights</h2>
+
+  <label>Technical Suitability:</label>
+  <input type="number" id="wTech" value="25"><br><br>
+
+  <label>Economic Viability:</label>
+  <input type="number" id="wEcon" value="25"><br><br>
+
+  <label>Time Horizon:</label>
+  <input type="number" id="wTime" value="20"><br><br>
+
+  <label>Regulatory Landscape:</label>
+  <input type="number" id="wReg" value="15"><br><br>
+
+  <label>Sustainability Impact:</label>
+  <input type="number" id="wSus" value="15"><br><br>
+
+</div>
+
+<div class="section">
+  <h2>2. Score Product Groups (1 = weak fit, 5 = strong fit)</h2>
+
+  <table>
+    <tr>
+      <th>Product Group</th>
+      <th>Technical</th>
+      <th>Economic</th>
+      <th>Time</th>
+      <th>Regulatory</th>
+      <th>Sustainability</th>
+      <th>Total Score</th>
+    </tr>
+
+    <tr>
+      <td>Consumer Electronics</td>
+      <td><input type="number" id="ceTech" value="3"></td>
+      <td><input type="number" id="ceEcon" value="4"></td>
+      <td><input type="number" id="ceTime" value="3"></td>
+      <td><input type="number" id="ceReg" value="5"></td>
+      <td><input type="number" id="ceSus" value="4"></td>
+      <td class="result" id="ceTotal">-</td>
+    </tr>
+
+    <tr>
+      <td>EVs</td>
+      <td><input type="number" id="evTech" value="4"></td>
+      <td><input type="number" id="evEcon" value="4"></td>
+      <td><input type="number" id="evTime" value="4"></td>
+      <td><input type="number" id="evReg" value="5"></td>
+      <td><input type="number" id="evSus" value="5"></td>
+      <td class="result" id="evTotal">-</td>
+    </tr>
+
+    <tr>
+      <td>Data Center Infrastructure</td>
+      <td><input type="number" id="dcTech" value="4"></td>
+      <td><input type="number" id="dcEcon" value="5"></td>
+      <td><input type="number" id="dcTime" value="4"></td>
+      <td><input type="number" id="dcReg" value="3"></td>
+      <td><input type="number" id="dcSus" value="4"></td>
+      <td class="result" id="dcTotal">-</td>
+    </tr>
+
+  </table>
+
+  <br>
+  <button onclick="calculate()">Calculate Scores</button>
+
+</div>
+
+<script>
+function calculate() {
+
+  let wTech = parseFloat(document.getElementById("wTech").value);
+  let wEcon = parseFloat(document.getElementById("wEcon").value);
+  let wTime = parseFloat(document.getElementById("wTime").value);
+  let wReg  = parseFloat(document.getElementById("wReg").value);
+  let wSus  = parseFloat(document.getElementById("wSus").value);
+
+  let totalWeight = wTech + wEcon + wTime + wReg + wSus;
+
+  function compute(prefix) {
+    let tech = parseFloat(document.getElementById(prefix+"Tech").value);
+    let econ = parseFloat(document.getElementById(prefix+"Econ").value);
+    let time = parseFloat(document.getElementById(prefix+"Time").value);
+    let reg  = parseFloat(document.getElementById(prefix+"Reg").value);
+    let sus  = parseFloat(document.getElementById(prefix+"Sus").value);
+
+    let score = (
+      tech*wTech +
+      econ*wEcon +
+      time*wTime +
+      reg*wReg +
+      sus*wSus
+    ) / totalWeight;
+
+    return score.toFixed(2);
+  }
+
+  document.getElementById("ceTotal").innerText = compute("ce");
+  document.getElementById("evTotal").innerText = compute("ev");
+  document.getElementById("dcTotal").innerText = compute("dc");
+}
+</script>
+
+</body>
+</html>
