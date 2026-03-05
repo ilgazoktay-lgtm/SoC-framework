@@ -1,50 +1,72 @@
-index.html
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Automated Disassembly Framework</title>
+  <meta charset="UTF-8" />
+  <title>Automated Disassembly Strategic Framework (Extended)</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 40px;
-      background: #f4f6f9;
+      background: #f5f7fa;
     }
 
-    h1 {
-      margin-bottom: 10px;
-    }
+    h1 { margin-bottom: 6px; }
+    p.sub { margin-top: 0; color: #444; }
 
     .section {
       background: white;
       padding: 20px;
       margin-bottom: 25px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     }
 
-    label {
-      font-weight: bold;
-    }
-
-    input[type=number] {
-      width: 60px;
-    }
+    h2 { margin-top: 0; }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 15px;
+      margin-top: 10px;
     }
 
     th, td {
       padding: 8px;
       border-bottom: 1px solid #ddd;
       text-align: center;
+      vertical-align: middle;
     }
 
-    th {
-      background-color: #eef2f7;
+    th { background: #fafafa; }
+
+    td.left { text-align: left; }
+
+    input[type="number"] {
+      width: 90px;
+      padding: 6px;
+      border: 1px solid #cfd7e3;
+      border-radius: 6px;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #666;
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    .result {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
     }
 
     button {
@@ -52,130 +74,265 @@ index.html
       background: #0052cc;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      font-weight: 600;
     }
 
-    button:hover {
-      background: #003d99;
-    }
+    button:hover { background: #003d99; }
 
-    .result {
-      font-weight: bold;
+    .kpi {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 18px;
+      margin-top: 8px;
     }
+    .kpi div {
+      background: #fbfcfe;
+      border: 1px solid #e6edf7;
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+    .kpi .label { font-size: 12px; color: #666; margin-bottom: 4px; }
+    .kpi .val { font-size: 16px; font-weight: 700; }
   </style>
 </head>
 
 <body>
+  <h1>Automated Disassembly Decision Engine</h1>
+  <p class="sub">Extended model: Base 5-pillar framework + operational indices (Excel-aligned)</p>
 
-<h1>Automated Disassembly Decision Framework</h1>
-<p>Score product groups (1–5) and adjust pillar weights.</p>
+  <div class="section">
+    <h2>1) Base Model Inputs (Scores 1–5)</h2>
 
-<div class="section">
-  <h2>1. Adjust Pillar Weights</h2>
+    <table>
+      <tr>
+        <th>Pillar</th>
+        <th class="left">Metric</th>
+        <th>Weight</th>
+        <th>Score (1–5)</th>
+      </tr>
 
-  <label>Technical Suitability:</label>
-  <input type="number" id="wTech" value="25"><br><br>
+      <!-- REGULATORY (weights: 0.30,0.20,0.10,0.15,0.25) -->
+      <tr><td rowspan="5">Regulatory</td><td class="left">ESPR Priority</td><td>0.30</td><td><input type="number" id="r1" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">DPP Maturity</td><td>0.20</td><td><input type="number" id="r2" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">EPR Modulation</td><td>0.10</td><td><input type="number" id="r3" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Repairability Index</td><td>0.15</td><td><input type="number" id="r4" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">CRM Value</td><td>0.25</td><td><input type="number" id="r5" min="1" max="5" step="0.01" value="3"></td></tr>
 
-  <label>Economic Viability:</label>
-  <input type="number" id="wEcon" value="25"><br><br>
+      <!-- ECONOMIC (weights: 0.20,0.25,0.30,0.10,0.10) -->
+      <tr><td rowspan="5">Economic</td><td class="left">Net Present Value</td><td>0.20</td><td><input type="number" id="e1" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Residual Value Capture</td><td>0.25</td><td><input type="number" id="e2" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Break-Even Throughput</td><td>0.30</td><td><input type="number" id="e3" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Recovery Rate</td><td>0.10</td><td><input type="number" id="e4" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Market Liquidity</td><td>0.10</td><td><input type="number" id="e5" min="1" max="5" step="0.01" value="3"></td></tr>
 
-  <label>Time Horizon:</label>
-  <input type="number" id="wTime" value="20"><br><br>
+      <!-- TECHNICAL (weights: 0.50,0.25,0.10,0.15) -->
+      <tr><td rowspan="4">Technical</td><td class="left">Product Complexity</td><td>0.50</td><td><input type="number" id="t1" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Safe Handling & Hazards</td><td>0.25</td><td><input type="number" id="t2" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Component Purity</td><td>0.10</td><td><input type="number" id="t3" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Data & Instructions</td><td>0.15</td><td><input type="number" id="t4" min="1" max="5" step="0.01" value="3"></td></tr>
 
-  <label>Regulatory Landscape:</label>
-  <input type="number" id="wReg" value="15"><br><br>
+      <!-- TIME (weights: 0.40,0.30,0.20,0.10) -->
+      <tr><td rowspan="4">Time Horizon</td><td class="left">Market Return Volume</td><td>0.40</td><td><input type="number" id="th1" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Tech Replacement Risk</td><td>0.30</td><td><input type="number" id="th2" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Product Flow Stability</td><td>0.20</td><td><input type="number" id="th3" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Product Variety</td><td>0.10</td><td><input type="number" id="th4" min="1" max="5" step="0.01" value="3"></td></tr>
 
-  <label>Sustainability Impact:</label>
-  <input type="number" id="wSus" value="15"><br><br>
+      <!-- SUSTAINABILITY (weights: 0.50,0.30,0.20) -->
+      <tr><td rowspan="3">Sustainability</td><td class="left">Avoided Emissions</td><td>0.50</td><td><input type="number" id="s1" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Recycling Efficiency</td><td>0.30</td><td><input type="number" id="s2" min="1" max="5" step="0.01" value="3"></td></tr>
+      <tr><td class="left">Material Circularity (MCI)</td><td>0.20</td><td><input type="number" id="s3" min="1" max="5" step="0.01" value="3"></td></tr>
+    </table>
 
-</div>
+    <div class="note">
+      Pillar weights (Excel): Technical 0.35, Economic 0.25, Time 0.20, Regulatory 0.10, Sustainability 0.10.
+    </div>
 
-<div class="section">
-  <h2>2. Score Product Groups (1 = weak fit, 5 = strong fit)</h2>
+    <br />
+    <button onclick="calculate()">Calculate</button>
+  </div>
 
-  <table>
-    <tr>
-      <th>Product Group</th>
-      <th>Technical</th>
-      <th>Economic</th>
-      <th>Time</th>
-      <th>Regulatory</th>
-      <th>Sustainability</th>
-      <th>Total Score</th>
-    </tr>
+  <div class="section">
+    <h2>2) Added Indices Inputs</h2>
 
-    <tr>
-      <td>Consumer Electronics</td>
-      <td><input type="number" id="ceTech" value="3"></td>
-      <td><input type="number" id="ceEcon" value="4"></td>
-      <td><input type="number" id="ceTime" value="3"></td>
-      <td><input type="number" id="ceReg" value="5"></td>
-      <td><input type="number" id="ceSus" value="4"></td>
-      <td class="result" id="ceTotal">-</td>
-    </tr>
+    <div class="grid">
+      <div>
+        <h3 style="margin:0 0 8px 0;">Cost / Time / Value</h3>
+        <table>
+          <tr><th class="left">Input</th><th>Value</th></tr>
+          <tr><td class="left">AD-Cost per Time [€/s]</td><td><input type="number" id="costPerSec" min="0" step="0.0001" value="0.45"></td></tr>
+          <tr><td class="left">estimated eDiM [s]</td><td><input type="number" id="edim" min="0" step="1" value="240"></td></tr>
+          <tr><td class="left">Recovered Unit Value [€]</td><td><input type="number" id="recoveredValue" min="0" step="0.01" value="55"></td></tr>
+          <tr><td class="left">VDT reference (AK_ref) [€/s]</td><td><input type="number" id="vdtRef" min="0.0000001" step="0.0001" value="2.2916667"></td></tr>
+        </table>
+        <div class="note">
+          AK_ref is the normalization baseline used in Excel (default = EVs: 2750/1200 ≈ 2.2916667 €/s). You can change it if you want another benchmark.
+        </div>
+      </div>
 
-    <tr>
-      <td>EVs</td>
-      <td><input type="number" id="evTech" value="4"></td>
-      <td><input type="number" id="evEcon" value="4"></td>
-      <td><input type="number" id="evTime" value="4"></td>
-      <td><input type="number" id="evReg" value="5"></td>
-      <td><input type="number" id="evSus" value="5"></td>
-      <td class="result" id="evTotal">-</td>
-    </tr>
+      <div>
+        <h3 style="margin:0 0 8px 0;">Risk / Maturity Multipliers</h3>
+        <table>
+          <tr><th class="left">Input</th><th>Value</th></tr>
+          <tr><td class="left">Return Volume Score (AE)</td><td><input type="number" id="returnVolumeScore" min="0" step="0.01" value="5"></td></tr>
+          <tr><td class="left">Automation Maturity Gap (AM)</td><td><input type="number" id="amg" min="0" max="2" step="0.01" value="0.80"></td></tr>
+          <tr><td class="left">Hazard Cost Index (AN)</td><td><input type="number" id="hci" min="0" max="2" step="0.01" value="0.90"></td></tr>
+          <tr><td class="left">Value Volatility Index (AO)</td><td><input type="number" id="vvi" min="0" max="2" step="0.01" value="1.00"></td></tr>
+        </table>
+        <div class="note">
+          These multipliers are applied exactly as in Excel: <b>Final Score = Base Score × VDT_norm × AM × AN × AO</b>.
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <tr>
-      <td>Data Center Infrastructure</td>
-      <td><input type="number" id="dcTech" value="4"></td>
-      <td><input type="number" id="dcEcon" value="5"></td>
-      <td><input type="number" id="dcTime" value="4"></td>
-      <td><input type="number" id="dcReg" value="3"></td>
-      <td><input type="number" id="dcSus" value="4"></td>
-      <td class="result" id="dcTotal">-</td>
-    </tr>
+  <div class="section">
+    <h2>Results</h2>
 
-  </table>
+    <div class="kpi">
+      <div><div class="label">Regulatory weighted sum (G)</div><div class="val" id="regScore">—</div></div>
+      <div><div class="label">Economic weighted sum (M)</div><div class="val" id="econScore">—</div></div>
+      <div><div class="label">Technical weighted sum (R)</div><div class="val" id="techScore">—</div></div>
+      <div><div class="label">Time weighted sum (W)</div><div class="val" id="timeScore">—</div></div>
+      <div><div class="label">Sustainability weighted sum (AA)</div><div class="val" id="susScore">—</div></div>
+    </div>
 
-  <br>
-  <button onclick="calculate()">Calculate Scores</button>
+    <hr style="margin:18px 0;" />
 
-</div>
+    <div class="kpi">
+      <div><div class="label">Base Model Result (AB)</div><div class="val" id="baseScore">—</div></div>
+      <div><div class="label">Break-Even Difficulty (AD = 6 - Break-Even Throughput)</div><div class="val" id="bed">—</div></div>
 
-<script>
-function calculate() {
+      <div><div class="label">TRI-proxy (AF = Return Volume Score / Break-Even Difficulty)</div><div class="val" id="triProxy">—</div></div>
+      <div><div class="label">Throughput Robustness Index (AG)</div><div class="val" id="triIndex">—</div></div>
 
-  let wTech = parseFloat(document.getElementById("wTech").value);
-  let wEcon = parseFloat(document.getElementById("wEcon").value);
-  let wTime = parseFloat(document.getElementById("wTime").value);
-  let wReg  = parseFloat(document.getElementById("wReg").value);
-  let wSus  = parseFloat(document.getElementById("wSus").value);
+      <div><div class="label">Value Density per Time (AK = Recovered Value / eDiM) [€/s]</div><div class="val" id="vdt">—</div></div>
+      <div><div class="label">VDT_norm (AL = AK / AK_ref)</div><div class="val" id="vdtNorm">—</div></div>
 
-  let totalWeight = wTech + wEcon + wTime + wReg + wSus;
+      <div><div class="label">Cost Sensitivity Index (AQ = Cost/s × eDiM / Recovered Value)</div><div class="val" id="csi">—</div></div>
+      <div><div class="label">CSI usable (AR)</div><div class="val" id="csiUsable">—</div></div>
 
-  function compute(prefix) {
-    let tech = parseFloat(document.getElementById(prefix+"Tech").value);
-    let econ = parseFloat(document.getElementById(prefix+"Econ").value);
-    let time = parseFloat(document.getElementById(prefix+"Time").value);
-    let reg  = parseFloat(document.getElementById(prefix+"Reg").value);
-    let sus  = parseFloat(document.getElementById(prefix+"Sus").value);
+      <div><div class="label">Margin Buffer Ratio (AV = (Value - Cost)/Value)</div><div class="val" id="mbr">—</div></div>
+      <div><div class="label">Final Score (AP)</div><div class="val" id="finalScore">—</div></div>
+    </div>
 
-    let score = (
-      tech*wTech +
-      econ*wEcon +
-      time*wTime +
-      reg*wReg +
-      sus*wSus
-    ) / totalWeight;
+    <hr style="margin:18px 0;" />
+    <p class="result">FINAL SCORE (Excel-aligned): <span id="finalScoreBig">—</span></p>
 
-    return score.toFixed(2);
-  }
+    <div class="note">
+      Note: The Excel sheet computes <b>AG</b> (Throughput Robustness Index) but does <b>not</b> multiply it into AP.
+      If you want AG to be included in Final Score, tell me and I’ll switch AP to: Base × VDT_norm × AM × AN × AO × AG.
+    </div>
+  </div>
 
-  document.getElementById("ceTotal").innerText = compute("ce");
-  document.getElementById("evTotal").innerText = compute("ev");
-  document.getElementById("dcTotal").innerText = compute("dc");
-}
-</script>
+  <script>
+    function n(id) {
+      const v = parseFloat(document.getElementById(id).value);
+      return isFinite(v) ? v : 0;
+    }
 
+    function weightedScore(ids, weights) {
+      let total = 0;
+      for (let i = 0; i < ids.length; i++) total += n(ids[i]) * weights[i];
+      return total;
+    }
+
+    function triIndexFromProxy(triProxy) {
+      // Excel: IF(AF<1,0.7,IF(AF<2,0.85,1))
+      if (triProxy < 1) return 0.7;
+      if (triProxy < 2) return 0.85;
+      return 1.0;
+    }
+
+    function csiUsableFromCSI(csi) {
+      // Excel: IF(AQ<0.5,1,IF(AQ<=1,0.9,IF(AQ<=2,0.75,0.6)))
+      if (csi < 0.5) return 1.0;
+      if (csi <= 1.0) return 0.9;
+      if (csi <= 2.0) return 0.75;
+      return 0.6;
+    }
+
+    function fmt(x, d=2) {
+      if (!isFinite(x)) return "—";
+      return x.toFixed(d);
+    }
+
+    function calculate() {
+      // --- Base model pillar sums (Excel weights) ---
+      const reg = weightedScore(["r1","r2","r3","r4","r5"], [0.30,0.20,0.10,0.15,0.25]);
+      const econ = weightedScore(["e1","e2","e3","e4","e5"], [0.20,0.25,0.30,0.10,0.10]);
+      const tech = weightedScore(["t1","t2","t3","t4"], [0.50,0.25,0.10,0.15]);
+      const time = weightedScore(["th1","th2","th3","th4"], [0.40,0.30,0.20,0.10]);
+      const sus = weightedScore(["s1","s2","s3"], [0.50,0.30,0.20]);
+
+      // Pillar weights (Excel):
+      // Technical 0.35, Economic 0.25, Time 0.20, Regulatory 0.10, Sustainability 0.10
+      const base =
+        tech * 0.35 +
+        econ * 0.25 +
+        time * 0.20 +
+        reg  * 0.10 +
+        sus  * 0.10;
+
+      // --- Added indices (Excel-aligned) ---
+      const costPerSec = n("costPerSec");        // AC / AS
+      const edim = n("edim");                    // AU / AI
+      const recoveredValue = n("recoveredValue");// AT / AJ
+      const vdtRef = Math.max(n("vdtRef"), 1e-9);
+
+      // Break-Even Difficulty (AD = 6 - J), where J is Break-Even Throughput score (here: e3)
+      const breakEvenThroughputScore = n("e3");
+      const bed = 6 - breakEvenThroughputScore;
+
+      const returnVolumeScore = n("returnVolumeScore"); // AE
+      const triProxy = (bed !== 0) ? (returnVolumeScore / bed) : Infinity; // AF
+      const triIndex = triIndexFromProxy(triProxy); // AG
+
+      // Value Density per Time AK = recovered / edim
+      const vdt = (edim !== 0) ? (recoveredValue / edim) : 0;
+      const vdtNorm = vdt / vdtRef; // AL
+
+      // Multipliers
+      const amg = n("amg"); // AM
+      const hci = n("hci"); // AN
+      const vvi = n("vvi"); // AO
+
+      // Final Score (Excel AP): AB * AL * AM * AN * AO
+      const finalScore = base * vdtNorm * amg * hci * vvi;
+
+      // CSI (AQ) and CSI usable (AR)
+      const csi = (recoveredValue !== 0) ? (costPerSec * edim / recoveredValue) : Infinity;
+      const csiUsable = csiUsableFromCSI(csi);
+
+      // Margin Buffer Ratio (AV) = (Value - Cost)/Value = (V - costPerSec*edim)/V
+      const mbr = (recoveredValue !== 0) ? ((recoveredValue - costPerSec * edim) / recoveredValue) : 0;
+
+      // --- Render ---
+      document.getElementById("regScore").innerText = fmt(reg, 2);
+      document.getElementById("econScore").innerText = fmt(econ, 2);
+      document.getElementById("techScore").innerText = fmt(tech, 2);
+      document.getElementById("timeScore").innerText = fmt(time, 2);
+      document.getElementById("susScore").innerText = fmt(sus, 2);
+
+      document.getElementById("baseScore").innerText = fmt(base, 3);
+      document.getElementById("bed").innerText = fmt(bed, 3);
+      document.getElementById("triProxy").innerText = isFinite(triProxy) ? fmt(triProxy, 3) : "∞";
+      document.getElementById("triIndex").innerText = fmt(triIndex, 2);
+
+      document.getElementById("vdt").innerText = fmt(vdt, 6);
+      document.getElementById("vdtNorm").innerText = fmt(vdtNorm, 4);
+
+      document.getElementById("csi").innerText = isFinite(csi) ? fmt(csi, 4) : "∞";
+      document.getElementById("csiUsable").innerText = fmt(csiUsable, 2);
+
+      document.getElementById("mbr").innerText = fmt(mbr, 4);
+      document.getElementById("finalScore").innerText = fmt(finalScore, 4);
+      document.getElementById("finalScoreBig").innerText = fmt(finalScore, 4);
+    }
+
+    // initial compute
+    calculate();
+  </script>
 </body>
 </html>
